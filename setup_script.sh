@@ -100,7 +100,7 @@ apt-get install google-chrome-stable
 apt-get install vlc -y
 # apt-get install deluge y # torrents
 
-## Telegram
+# Telegram
 add-apt-repository ppa:atareao/telegram -y
 apt-get update
 apt-get install telegram -y
@@ -109,7 +109,6 @@ apt-get install slack -y
 
 # Skype
 wget -O skype.deb http://go.skype.com/skypeforlinux-64.deb
-apt-get update
 dpkg -i skype.deb
 apt-get -f install -y
 rm skype.deb
@@ -126,12 +125,12 @@ apt-get install signal-desktop
 #### Virtualisation
 ############################################################################
 
-wget http://ftp.us.debian.org/debian/pool/main/libv/libvpx/libvpx1_1.1.0-1_amd64.deb
-sudo dpkg -i libvpx1_1.1.0-1_amd64.deb
-wget http://ftp.cn.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb
-sudo dpkg -i libpng12-0_1.2.49-1+deb7u2_amd64.deb
-rm -f libvpx1_1.1.0-1_amd64.deb
-rm -f libpng12-0_1.2.49-1+deb7u2_amd64.deb
+wget -O libvpx.deb http://ftp.us.debian.org/debian/pool/main/libv/libvpx/libvpx1_1.1.0-1_amd64.deb
+sudo dpkg -i libvpx.deb
+wget -O libpng.deb http://ftp.cn.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb
+sudo dpkg -i libpng.deb
+rm -f libvpx.deb
+rm -f libpng.deb
 
 apt-get install virtualbox -y
 apt-get install virtualbox-dkms -y
@@ -140,9 +139,7 @@ apt-get install virtualbox-guest-utils -y
 
 usermod -a -G vboxusers `whoami`
 sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list"
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -   # for linux mint 18
-
-
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -   # for linux mint 18
 
 ###
 sudo reboot
