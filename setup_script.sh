@@ -16,11 +16,11 @@ apt-get install ghc -y
 apt-get install php -y
 
 # python stuff
-apt-get install python3 python3-pip -y
+apt-get install python3 python3-pip python3-setuptools python3-pyqt5 -y
 pip3 install --upgrade pip -y
 
 # perl stuff
-cpan install CPAN -y
+cpan install CPAN
 cpan reload
 
 
@@ -72,16 +72,19 @@ apt-get install thunderbird -y
 
 apt-get install whois -y
 
+add-apt-repository ppa:ubuntu-mozilla-daily/ppa
 apt-get install firefox -y
+
+
 apt-get install filezilla -y
 
 ## networking
 apt-get install openssh-server -y
 
 ## VPN
-sudo apt-get install openvpn -y
-sudo apt-get install openvpn bridge-utils -y
-sudo apt-get install network-manager-openvpn network-manager-openvpn-gnome -y
+apt-get install openvpn -y
+apt-get install openvpn bridge-utils -y
+apt-get install network-manager-openvpn network-manager-openvpn-gnome -y
 
 
 ## Chrome
@@ -108,7 +111,8 @@ apt-get install slack -y
 wget -O skype.deb http://go.skype.com/skypeforlinux-64.deb
 apt-get update
 dpkg -i skype.deb
-apt-get -f install -y;rm skype.deb
+apt-get -f install -y
+rm skype.deb
 
 # Signal
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
@@ -126,6 +130,8 @@ wget http://ftp.us.debian.org/debian/pool/main/libv/libvpx/libvpx1_1.1.0-1_amd64
 sudo dpkg -i libvpx1_1.1.0-1_amd64.deb
 wget http://ftp.cn.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb
 sudo dpkg -i libpng12-0_1.2.49-1+deb7u2_amd64.deb
+rm -f libvpx1_1.1.0-1_amd64.deb
+rm -f libpng12-0_1.2.49-1+deb7u2_amd64.deb
 
 apt-get install virtualbox -y
 apt-get install virtualbox-dkms -y
@@ -135,15 +141,8 @@ apt-get install virtualbox-guest-utils -y
 usermod -a -G vboxusers `whoami`
 sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list"
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -   # for linux mint 18
-wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | apt-key add -
-
-# apt-get install virtualbox-5.2
-
-# wget -q  http://download.virtualbox.org/virtualbox/5.2.0_RC1/Oracle_VM_VirtualBox_Extension_Pack-5.2.0_RC1.vbox-extpack  
-# VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-5.2.0_RC1.vbox-extpack
-
-# VBoxManage list extpacks
-# lsmod | fgrep vbox
 
 
 
+###
+sudo reboot
