@@ -105,7 +105,11 @@ add-apt-repository ppa:atareao/telegram -y
 apt-get update
 apt-get install telegram -y
 
-apt-get install slack -y
+# Slack
+apt-get install libcurl3
+wget -O slack.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.2-amd64.deb
+dpkg -i slack.deb
+rm slack.deb
 
 # Skype
 wget -O skype.deb http://go.skype.com/skypeforlinux-64.deb
