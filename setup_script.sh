@@ -129,21 +129,21 @@ apt-get install signal-desktop
 #### Virtualisation
 ############################################################################
 
-wget -O libvpx.deb http://ftp.us.debian.org/debian/pool/main/libv/libvpx/libvpx1_1.1.0-1_amd64.deb
-sudo dpkg -i libvpx.deb
-wget -O libpng.deb http://ftp.cn.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb
-sudo dpkg -i libpng.deb
-rm -f libvpx.deb
-rm -f libpng.deb
+# install from repository
+# apt-get install virtualbox -y
+# apt-get install virtualbox-dkms -y
+# apt-get install virtualbox-qt -y
+# apt-get install virtualbox-guest-utils -y
 
-apt-get install virtualbox -y
-apt-get install virtualbox-dkms -y
-apt-get install virtualbox-qt -y
-apt-get install virtualbox-guest-utils -y
-
-usermod -a -G vboxusers `whoami`
-sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list"
+# set package sources
+sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib' > /etc/apt/sources.list.d/virtualbox.list"
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -   # for linux mint 18
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O-      | apt-key add -
+
+# install virtualbox
+wget -O virtualbox.deb http://download.virtualbox.org/virtualbox/5.2.4/virtualbox-5.2_5.2.4-119785~Ubuntu~xenial_amd64.deb
+dpkg -i virtualbox.deb
 
 ###
 sudo reboot
+
