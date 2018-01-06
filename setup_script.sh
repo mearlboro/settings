@@ -100,6 +100,9 @@ apt-get install google-chrome-stable
 apt-get install vlc -y
 # apt-get install deluge y # torrents
 
+# Linphone - VOIP softphone
+apt install linphone
+
 # Telegram
 add-apt-repository ppa:atareao/telegram -y
 apt-get update
