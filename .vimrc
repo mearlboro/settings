@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -9,7 +8,7 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -19,6 +18,9 @@ command W w !sudo tee % > /dev/null
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set n lines to the cursor - when moving vertically using j/k
 set so=10
+
+" Fix stupid paste aka set bracketed paste
+set paste
 
 " Turn on the WiLd menu
 set wildmenu
@@ -47,20 +49,19 @@ set whichwrap+=<,>,h,l
 " Show matching brackets when text indicator is over them
 set showmatch
 
+" Make <> act like brackets, bounce with %
+set matchpairs+=<:>
+
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
 
-" Mark trailing whitespace
-match Todo /\s\+$/
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Ignore case when searching
 set ignorecase
 
@@ -79,11 +80,9 @@ set magic
 " Make verymagic default for perl-style regex
 nnoremap / /\v
 vnoremap / /\v
-cnoremap %s/ %smagic/
-cnoremap >s/ >smagic/
+cnoremap %s/ %s/\v
+cnoremap >s/ >s/\v
 nnoremap :g/ :g/\v
-nnoremap :g// :g//
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,7 +96,7 @@ set t_Co=256
 
 " Set a colour scheme. To preview the range of colour schemes
 " type :colorscheme then Space followed by TAB.
-colorscheme industry
+" colorscheme industry
 
 set background=dark
 
@@ -108,12 +107,17 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
+
+" Mark trailing whitespace
+match Todo /\s\+$/
+
+" Indent/outdent to nearest tabstop
+set shiftround
 
 " 1 tab = 4 spaces
 set shiftwidth=4
@@ -123,6 +127,9 @@ set tabstop=4
 set lbr
 set tw=100
 
+" Display margin for 80 characters
+set textwidth=80
+
 set ai   "Auto indent
 set si   "Smart indent
 set wrap "Wrap lines
@@ -131,6 +138,27 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Highlight repeated lines
+fun! HighlightRepeats() range
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+    endif
+  endfor
+endfun
+
+
 " Delete trailing white space on save
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
