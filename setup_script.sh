@@ -91,6 +91,9 @@ done
 # update prezto
 zprezto-update
 
+# download my .zshrc
+wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
+
 
 ############################################################################
 #### Terminal
