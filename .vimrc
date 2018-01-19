@@ -1,3 +1,15 @@
+" Directives for use with: https://github.com/bronson/vim-update-bundles
+" https://raw.github.com/bronson/vim-update-bundles/master/vim-update-bundles
+" Bundle: https://github.com/ctrlpvim/ctrlp.vim.git
+" Bundle: https://github.com/MarcWeber/vim-addon-mw-utils.git
+" Bundle: https://github.com/morhetz/gruvbox
+" Bundle: https://github.com/altercation/vim-colors-solarized.git
+" Bundle: https://github.com/bling/vim-airline.git
+" Bundle: tpope/vim-pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -8,7 +20,7 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" :W sudo saves the file
+" :W sudo saves the file 
 " (for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -42,7 +54,7 @@ set nu
 " Height of the command bar
 set cmdheight=2
 
-" Configure backspace so it acts as it should act
+" Configure backspace to go over newlines and wrap
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
@@ -57,6 +69,9 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+" Mark trailing whitespace
+match TODO /\s\+$/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -86,7 +101,7 @@ nnoremap :g/ :g/\v
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
+" => Themes, colors, fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
@@ -94,18 +109,18 @@ syntax enable
 " Enable 256 colors palette
 set t_Co=256
 
-" Set a colour scheme. To preview the range of colour schemes
-" type :colorscheme then Space followed by TAB.
-" colorscheme industry
-
+" Set bg and custom colorscheme
 set background=dark
+let g:solarized_termcolors=256
+colorscheme gruvbox
+let g:gruvbox_contrast='medium'
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
-
+set fileformat=unix
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -115,6 +130,12 @@ set expandtab
 
 " Mark trailing whitespace
 match Todo /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " Indent/outdent to nearest tabstop
 set shiftround
@@ -158,7 +179,6 @@ fun! HighlightRepeats() range
   endfor
 endfun
 
-
 " Delete trailing white space on save
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
@@ -168,11 +188,23 @@ fun! CleanExtraSpaces()
     call setreg('/', old_query)
 endfun
 
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
+" Remap the tab key to do autocompletion or indentation depending on the
+" context (from http://www.vim.org/tips/tip.php?tip_id=102)
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
     endif
-	return ''
 endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin configs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+

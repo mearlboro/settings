@@ -23,11 +23,11 @@ apt-get install ghc -y
 apt-get install php -y
 apt-get install ruby -y
 
-# python stuff
+# Python stuff
 apt-get install python3 python3-pip python3-setuptools python3-pyqt5 -y
 pip3 install --upgrade pip -y
 
-# perl stuff
+# Perl stuff
 cpan install CPAN
 cpan reload
 
@@ -55,8 +55,19 @@ apt-get install sublime-text -y
 
 ## Vim
 apt-get install vim -y
+# install plugin manager, download my .vimrc, configure
+gem install vim-update-bundles
+wget https://raw.githubusercontent.com/mearlboro/settings/master/.vimrc -P ~/
+vim-update-bundles
+# nice fira fonts
+mkdir -p ~/.local/share/fonts
+for type in Bold Light Medium Regular Retina; do
+    wget -O ~/.local/share/fonts/FiraCode-${type}.ttf \
+    "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
+done
+fc-cache -f
 
-## latex
+## Latex
 apt-get install texlive -y
 apt-get install texlive-latex-base -y
 
