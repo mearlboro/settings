@@ -7,14 +7,14 @@ echo "deb http://ftp.debian.org/debian sylvia main contrib non-free" | sudo tee 
 apt-get update && apt-get upgrade
 
 # kernel update utility
-apt install ukuu
+apt install ukuu -y
 
 
 ############################################################################
 #### Dev
 ############################################################################
 
-## Compilers 
+## Compilers
 # https://help.ubuntu.com/community/InstallingCompilers
 apt-get install build-essential -y
 # gcc -v
@@ -65,7 +65,8 @@ for type in Bold Light Medium Regular Retina; do
     wget -O ~/.local/share/fonts/FiraCode-${type}.ttf \
     "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
 done
-fc-cache -f
+apt install powerline-fonts -y
+fc-cache -vf
 
 ## Latex
 apt-get install texlive -y
@@ -77,7 +78,7 @@ apt-get install texlive-latex-base -y
 ############################################################################
 
 < /etc/shells grep zsh
-apt install zsh
+apt install zsh -y
 chsh -s /bin/zsh $(whoami)
 
 # clone prezto
@@ -93,6 +94,14 @@ zprezto-update
 
 # download my .zshrc
 wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
+
+# download theme
+mkdir ~/.zsh
+cd ~/.zsh
+git clone https://github.com/geometry-zsh/geometry
+cd ~/.zsh/geometry
+git submodule update --init --recursive
+cd ~
 
 
 ############################################################################
@@ -119,7 +128,7 @@ apt-get update
 apt-get install thunderbird -y
 
 # open MS office emails in linux
-apt install libemail-outlook-message-perl libemail-sender-perl
+apt install libemail-outlook-message-perl libemail-sender-perl -y
 
 # organize
 apt install tree # tree view of files
@@ -146,10 +155,10 @@ apt-get install network-manager-openvpn network-manager-openvpn-gnome -y
 add-apt-repository ppa:ubuntu-mozilla-daily/ppa
 apt-get install firefox -y
 
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-apt-get update 
-apt-get install google-chrome-stable
+apt-get update
+apt-get install google-chrome-stable -y
 
 
 ############################################################################
@@ -161,7 +170,7 @@ apt-get install vlc -y
 apt-get install deluge -y # torrents
 
 # Linphone - VOIP softphone
-apt install linphone
+apt install linphone -y
 
 # Telegram
 add-apt-repository ppa:atareao/telegram -y
@@ -169,7 +178,7 @@ apt-get update
 apt-get install telegram -y
 
 # Slack
-apt-get install libcurl3
+apt-get install libcurl3 -y
 wget -O slack.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.2-amd64.deb
 dpkg -i slack.deb
 rm slack.deb
@@ -184,7 +193,7 @@ rm skype.deb
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 apt-get update
-apt-get install signal-desktop
+apt-get install signal-desktop -y
 
 
 ############################################################################
