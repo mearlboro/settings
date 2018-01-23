@@ -5,6 +5,7 @@
 " Bundle: https://github.com/morhetz/gruvbox
 " Bundle: https://github.com/altercation/vim-colors-solarized.git
 " Bundle: https://github.com/bling/vim-airline.git
+" Bundle: https://github.com/junegunn/vim-easy-align
 " Bundle: tpope/vim-pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -205,6 +206,12 @@ inoremap <s-tab> <c-n>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Airline, add nice symbolic fonts
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
