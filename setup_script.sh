@@ -160,6 +160,11 @@ sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 apt-get update
 apt-get install google-chrome-stable -y
 
+add-apt-repository ppa:webupd8team/tor-browser
+apt-get update
+apt-get install tor-browser -y
+
+
 
 ############################################################################
 #### Media and social
