@@ -1,0 +1,23 @@
+###############################################################################
+# Custom key mappings
+###############################################################################
+
+# open in new tab without switching
+map D LinkHints.activateModeToOpenInNewTab
+# open in new tab and switch to it
+unmap F
+map F LinkHints.activateModeToOpenInNewForegroundTab
+
+
+###############################################################################
+# Custom search engines
+###############################################################################
+w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+fd: https://www.thefreedictionary.com/ thefreedictionary
+th: http://www.dictionary.com/browse/ thesaurus
+g: https://www.google.com/search?q=%s Google
+t: https://translate.google.com/#auto/en/ Translate
+y: https://www.youtube.com/results?search_query=%s Youtube
+gm: https://www.google.com/maps?q=%s Google maps
+az: https://www.amazon.com/s/?field-keywords=%s Amazon
+
