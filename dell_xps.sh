@@ -25,5 +25,14 @@ prime-select nvidia         # select nvidia as main GPU
 
 ############################################################################
 # Enable suspend on lid close
-sed -i -e 's/HandleLidSwitch=ignore/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
+sed -i -e 's/HandleLidSwitch=ignore/HandleLidSwitch=hibernate/g' /etc/systemd/logind.conf
+
+
+###########################################################################
+# optimisation and power management with TLP
+# http://linrunner.de/en/tlp/tlp.html
+add-apt-repository ppa:linrunner/tlp
+apt-get update
+apt install tlp -y
+tlp start
 
