@@ -19,17 +19,27 @@ apt install ukuu -y
 apt-get install build-essential -y
 # gcc -v
 # make -v
+
+# Haskell
 apt-get install ghc -y
-apt-get install php -y
+
+
+# Ruby
 apt-get install ruby -y
 
 # Python stuff
-apt-get install python3 python3-pip python3-setuptools python3-pyqt5 -y
+apt-get install python3 python3-pip python3-setuptools python3-pyqt5 python3-dev libssl-dev -y
+
 pip3 install --upgrade pip -y
+pip3 install virtualenv -y
 
 # Perl stuff
 cpan install CPAN
 cpan reload
+cpan install Regexp::Common
+
+# LAMP Stack
+
 
 ## Git
 apt-get install git -y
@@ -37,12 +47,17 @@ apt-get install git-crypt -y
 
 git config --global user.name "mearlboro"
 git config --global user.email "mearlboro@protonmail.com"
-git config --global branch.autosetuprebase always
+
 git config --global color.ui true
+
+# don't show changes of permissions in diff
+git config --global core.filemode false
 
 # leave Windows line endings alone
 git config --global core.autocrlf input
 
+# always add your changes on top when pulling
+git config --global branch.autosetuprebase always
 
 ############################################################################
 #### Editors
@@ -120,19 +135,34 @@ apt-get install nautilus -y
 # archive
 apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller -y
 
-# email
+# organize
+apt install tree # tree view of files
+# tree -L 2
+
+############################################################################
+#### Email
+############################################################################
 apt-get install sendmail -y
 
 add-apt-repository ppa:ubuntu-mozilla-security/ppa -y
 apt-get update
 apt-get install thunderbird -y
 
+# protonmail
+# https://protonmail.com/bridge/install
+# https://protonmail.com/bridge/thunderbird
+wget https://protonmail.com/download/protonmail-bridge_1.0.3-1_amd64.deb
+apt-get install debsig-verify debian-keyring
+mkdir -p /usr/share/debsig/keyrings/E2C75D68E6234B07
+gpg --dearmor --output /usr/share/debsig/keyrings/E2C75D68E6234B07/debsig.gpg bridge_pubkey.gpg
+mkdir -p /etc/debsig/policies/E2C75D68E6234B07
+cp bridge_16.04.pol /etc/debsig/policies/E2C75D68E6234B07
+debsig-verify protonmail-bridge_1.0.3-1_amd64.deb
+apt-get install ./protonmail-bridge_1.0.3-1_amd64.deb
+
 # open MS office emails in linux
 apt install libemail-outlook-message-perl libemail-sender-perl -y
 
-# organize
-apt install tree # tree view of files
-# tree -L 2
 
 
 ################################################################################
@@ -144,6 +174,8 @@ apt-get install whois -y
 apt-get install filezilla -y
 
 apt-get install openssh-server -y
+
+apt-get install nmap -y
 
 ## VPN
 apt-get install openvpn -y
@@ -175,7 +207,8 @@ apt-get install vlc -y
 apt-get install deluge -y # torrents
 
 # Linphone - VOIP softphone
-apt install linphone -y
+# apt install linphone -y
+flatpak --user install --from https://linphone.org/flatpak/linphone.flatpakref
 
 # Telegram
 add-apt-repository ppa:atareao/telegram -y
