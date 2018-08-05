@@ -229,20 +229,13 @@ apt-get install signal-desktop -y
 #### Virtualisation
 ############################################################################
 
-# install from repository
-# apt-get install virtualbox -y
-# apt-get install virtualbox-dkms -y
-# apt-get install virtualbox-qt -y
-# apt-get install virtualbox-guest-utils -y
-
-# set package sources
-sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib' > /etc/apt/sources.list.d/virtualbox.list"
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -   # for linux mint 18
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O-      | apt-key add -
-
-# install virtualbox
-wget -O virtualbox.deb http://download.virtualbox.org/virtualbox/5.2.4/virtualbox-5.2_5.2.4-119785~Ubuntu~xenial_amd64.deb
+## install virtualbox
+wget -O virtualbox.deb http://download.virtualbox.org/virtualbox/5.2.4/virtualbox-5.2_5.2.4-                         119785~Ubuntu~xenial_amd64.deb
 dpkg -i virtualbox.deb
+
+## Extension pack - will open virtualbox - TODO: silent install
+wget https://download.virtualbox.org/virtualbox/5.2.4/Oracle_VM_VirtualBox_Extension_Pack-5.2.4-119785.vbox-extpack
+virtualbox Oracle_VM_VirtualBox_Extension_Pack-5.2.4-119785.vbox-extpack
 
 
 ###
