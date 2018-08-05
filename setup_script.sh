@@ -2,44 +2,47 @@
 
 
 ############################################################################
-# add basic repos to sources.list and update
-echo "deb http://ftp.debian.org/debian sylvia main contrib non-free" | sudo tee -a /etc/apt/sources.list
-apt-get update && apt-get upgrade
-
 # kernel update utility
-apt install ukuu -y
+sudo apt-add-repository -y ppa:teejee2008/ppa -y
+sudo apt-get update
+sudo apt-get install ukuu -y
 
 
 ############################################################################
 #### Dev
 ############################################################################
 
-## Compilers
+## Build essentials / Compilers
 # https://help.ubuntu.com/community/InstallingCompilers
 apt-get install build-essential -y
 # gcc -v
 # make -v
 
-# Haskell
+## Haskell
 apt-get install ghc -y
 
+## Ruby
+# Linux mint already ships with ruby, only install the dev packages
+#gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3                           7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+#curl -sSL https://get.rvm.io | bash -s stable
+#rvm install ruby
+#rvm --default use ruby
+#export PATH="$PATH:$HOME/.rvm/bin"
+apt-get install ruby-dev -y
 
-# Ruby
-apt-get install ruby -y
-
-# Python stuff
+## Python
 apt-get install python3 python3-pip python3-setuptools python3-pyqt5 python3-dev libssl-dev -y
 
 pip3 install --upgrade pip -y
 pip3 install virtualenv -y
 
-# Perl stuff
+## Perl
 cpan install CPAN
 cpan reload
 cpan install Regexp::Common
 
-# LAMP Stack
-
+## PHP
+apt-get install php -y
 
 ## Git
 apt-get install git -y
@@ -59,7 +62,8 @@ git config --global core.autocrlf input
 # always add your changes on top when pulling
 git config --global branch.autosetuprebase always
 
-############################################################################
+
+#############################################################################
 #### Editors
 ############################################################################
 
@@ -70,18 +74,11 @@ apt-get install sublime-text -y
 
 ## Vim
 apt-get install vim -y
+
 # install plugin manager, download my .vimrc, configure
 gem install vim-update-bundles
 wget https://raw.githubusercontent.com/mearlboro/settings/master/.vimrc -P ~/
 vim-update-bundles
-# nice fira fonts
-mkdir -p ~/.local/share/fonts
-for type in Bold Light Medium Regular Retina; do
-    wget -O ~/.local/share/fonts/FiraCode-${type}.ttf \
-    "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
-done
-apt install powerline-fonts -y
-fc-cache -vf
 
 ## Latex
 apt-get install texlive -y
