@@ -60,13 +60,13 @@ alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 # configure monitors
 alias xrandrfix='xrandr --setprovideroutputsource'
 
-# monero wallet
-alias monero='sudo /usr/local/bin/monero-gui/start-gui.sh'
+# always whois without legal disclaimer
+alias whois='whois -H'
 
 # type 'dir' instead of 'cd dir'
 setopt AUTO_CD
 # type ~name to access directory
-hash -d s=/store
+hash -d dl=/Downloads
 
 
 ###############################################################################
@@ -82,8 +82,7 @@ bindkey "^[s" insert-sudo
 ###############################################################################
 ## Theme
 ###############################################################################
-source ~/.zsh/geometry/geometry.zsh
-
+source ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme
 
 ###############################################################################
 ## Other

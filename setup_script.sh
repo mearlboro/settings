@@ -80,6 +80,15 @@ gem install vim-update-bundles
 wget https://raw.githubusercontent.com/mearlboro/settings/master/.vimrc -P ~/
 vim-update-bundles
 
+# install powerline fonts
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+mkdir /usr/share/fonts/opentype
+mkdir /usr/share/fonts/opentype/powerline
+mv PowerlineSymbols.otf /usr/share/fonts/opentype/powerline
+fc-cache -vf /usr/share/fonts/opentype/powerline
+mv 10-powerline-symbols.conf /etc/fonts/conf.d/
+
 ## Latex
 apt-get install texlive -y
 apt-get install texlive-latex-base -y
@@ -89,31 +98,17 @@ apt-get install texlive-latex-base -y
 #### Shell
 ############################################################################
 
-< /etc/shells grep zsh
+#< /etc/shells grep zsh
 apt install zsh -y
-chsh -s /bin/zsh $(whoami)
-
-# clone prezto
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-# create new zsh config
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-
-# update prezto
-zprezto-update
+chsh -s /bin/zsh $SUDO_USER
 
 # download my .zshrc
 wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
 
-# download theme
-mkdir ~/.zsh
-cd ~/.zsh
-git clone https://github.com/geometry-zsh/geometry
-cd ~/.zsh/geometry
-git submodule update --init --recursive
-cd ~
+# add a theme
+mkdir ~/.zsh/themes/
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
+echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
 
 ############################################################################

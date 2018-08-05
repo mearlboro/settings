@@ -21,7 +21,7 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -123,6 +123,7 @@ set encoding=utf8
 set ffs=unix,dos,mac
 set fileformat=unix
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -208,10 +209,17 @@ inoremap <s-tab> <c-n>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Airline, add nice symbolic fonts
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+set encoding=utf-8
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+" Vim align add rule for -
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['-'] = { 'pattern': '-' }
+let g:easy_align_delimiters["'"] = { 'pattern': "'" }
