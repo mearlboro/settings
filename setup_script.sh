@@ -173,7 +173,7 @@ apt-get install nmap -y
 ## VPN
 apt-get install openvpn -y
 apt-get install openvpn bridge-utils -y
-apt-get install network-manager-openvpn network-manager-openvpn-gnome -y
+apt-get install network-manager-openvpn -y
 
 
 ## Browsers
@@ -199,7 +199,7 @@ apt-get install vlc -y
 
 # Linphone - VOIP softphone
 # apt install linphone -y
-flatpak --user install --from https://linphone.org/flatpak/linphone.flatpakref
+# flatpak --user install --from https://linphone.org/flatpak/linphone.flatpakref
 
 # Telegram
 add-apt-repository ppa:atareao/telegram -y
