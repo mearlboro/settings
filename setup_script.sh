@@ -162,6 +162,7 @@ apt install libemail-outlook-message-perl libemail-sender-perl -y
 ################################################################################
 
 apt-get install whois -y
+apt-get install dnsutils -y
 
 apt-get install filezilla -y
 
@@ -195,8 +196,6 @@ apt-get install tor-browser -y
 ############################################################################
 
 apt-get install vlc -y
-
-apt-get install deluge -y # torrents
 
 # Linphone - VOIP softphone
 # apt install linphone -y
