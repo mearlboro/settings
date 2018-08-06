@@ -30,9 +30,9 @@ apt-get install ghc -y
 #export PATH="$PATH:$HOME/.rvm/bin"
 apt-get install ruby-dev -y
 
-## Python
-apt-get install python3 python3-pip python3-setuptools python3-pyqt5 python3-dev libssl-dev -y
-
+# Mint already ships with python and python3 so just install dev packages
+#apt-get install python python3
+apt-get install python3-pip python3-setuptools python3-pyqt5 python3-dev libssl-dev -y
 pip3 install --upgrade pip -y
 pip3 install virtualenv -y
 
@@ -124,11 +124,13 @@ apt-get install tmux -y
 
 apt-get install nautilus -y
 
+apt-get install htop -y
+
 # archive
 apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller -y
 
 # organize
-apt install tree # tree view of files
+apt install tree -y # tree view of files
 # tree -L 2
 
 ############################################################################
@@ -171,7 +173,6 @@ apt-get install openssh-server -y
 apt-get install nmap -y
 
 ## VPN
-apt-get install openvpn -y
 apt-get install openvpn bridge-utils -y
 apt-get install network-manager-openvpn -y
 
