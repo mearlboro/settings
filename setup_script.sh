@@ -37,8 +37,9 @@ pip3 install --upgrade pip -y
 pip3 install virtualenv -y
 
 ## Perl
-cpan install CPAN
+apt install perldoc cpan
 cpan reload
+cpan install Log::Log4perl 
 cpan install Regexp::Common
 
 ## PHP
