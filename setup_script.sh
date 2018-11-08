@@ -39,7 +39,7 @@ pip3 install virtualenv -y
 ## Perl
 apt install perldoc cpan
 cpan reload
-cpan install Log::Log4perl 
+cpan install Log::Log4perl
 cpan install Regexp::Common
 
 ## PHP
@@ -232,8 +232,9 @@ apt-get install signal-desktop -y
 ############################################################################
 
 ## install virtualbox
-wget -O virtualbox.deb http://download.virtualbox.org/virtualbox/5.2.4/virtualbox-5.2_5.2.4-                         119785~Ubuntu~xenial_amd64.deb
+wget -O virtualbox.deb http://download.virtualbox.org/virtualbox/5.2.4/virtualbox-5.2_5.2.4-119785~Ubuntu~xenial_amd64.deb
 dpkg -i virtualbox.deb
+rm virtualbox.deb
 
 ## Extension pack - will open virtualbox - TODO: silent install
 wget https://download.virtualbox.org/virtualbox/5.2.4/Oracle_VM_VirtualBox_Extension_Pack-5.2.4-119785.vbox-extpack
