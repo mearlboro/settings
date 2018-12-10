@@ -147,14 +147,17 @@ apt-get install thunderbird -y
 # protonmail
 # https://protonmail.com/bridge/install
 # https://protonmail.com/bridge/thunderbird
+# needs files bridge_pubkey.gpg and bridge.pol
 wget https://protonmail.com/download/protonmail-bridge_1.0.3-1_amd64.deb
-apt-get install debsig-verify debian-keyring
+apt-get install debsig-verify debian-keyring -y
 mkdir -p /usr/share/debsig/keyrings/E2C75D68E6234B07
 gpg --dearmor --output /usr/share/debsig/keyrings/E2C75D68E6234B07/debsig.gpg bridge_pubkey.gpg
+rm bridge_pubkey.gpg
 mkdir -p /etc/debsig/policies/E2C75D68E6234B07
-cp bridge_16.04.pol /etc/debsig/policies/E2C75D68E6234B07
+mv bridge_16.04.pol /etc/debsig/policies/E2C75D68E6234B07
 debsig-verify protonmail-bridge_1.0.3-1_amd64.deb
 apt-get install ./protonmail-bridge_1.0.3-1_amd64.deb
+rm protonmail-bridge_1.0.3-1_amd64.deb
 
 # open MS office emails in linux
 apt install libemail-outlook-message-perl libemail-sender-perl -y
