@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 ############################################################################
 # kernel update utility
 sudo apt-add-repository -y ppa:teejee2008/ppa -y
@@ -199,13 +198,9 @@ apt-get install tor-browser -y
 
 apt-get install vlc -y
 
-# Linphone - VOIP softphone
-# apt install linphone -y
-# flatpak --user install --from https://linphone.org/flatpak/linphone.flatpakref
-
 # Telegram
 add-apt-repository ppa:atareao/telegram -y
-apt-get update
+apt-get update -y
 apt-get install telegram -y
 
 # Slack
@@ -223,9 +218,14 @@ rm skype.deb
 # Signal
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
-apt-get update
+apt-get update -y
 apt-get install signal-desktop -y
 
+# Jitsi
+wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | sudo apt-key add -
+sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
+apt-get update -y
+apt-get install jitsi-meet -y
 
 ############################################################################
 #### Virtualisation
