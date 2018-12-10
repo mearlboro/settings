@@ -19,6 +19,8 @@ apt-get install build-essential -y
 
 ## Haskell
 apt-get install ghc -y
+apt-get install cabal-install -y
+cabal update
 
 ## Ruby
 # Linux mint already ships with ruby, only install the dev packages
