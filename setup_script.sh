@@ -131,8 +131,10 @@ apt-get install htop -y
 apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller -y
 
 # organize
-apt install tree -y # tree view of files
+apt-get install tree -y
 # tree -L 2
+apt-get install colordiff -y
+# diff fileA fileB | colordiff
 
 ############################################################################
 #### Email
