@@ -39,7 +39,7 @@ pip3 install virtualenv -y
 ## Perl
 apt install perldoc cpan
 cpan reload
-cpan install Log::Log4perl 
+cpan install Log::Log4perl
 cpan install Regexp::Common
 
 ## PHP
@@ -225,6 +225,12 @@ curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 apt-get update
 apt-get install signal-desktop -y
+
+# Discord
+apt-get install libc++1
+wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+dpkg -i discord.deb
+rm discord.deb
 
 
 ############################################################################
