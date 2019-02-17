@@ -25,7 +25,7 @@ apt-get install build-essential -y
 # make -v
 
 ## Haskell
-apt-get install ghc -y
+apt-get install haskell-platform ghc -y
 apt-get install cabal-install -y
 cabal update
 
@@ -41,8 +41,8 @@ apt-get install ruby-dev -y
 # Mint already ships with python and python3 so just install dev packages
 #apt-get install python python3
 apt-get install python3-pip python3-setuptools python3-pyqt5 python3-dev libssl-dev -y
-pip3 install --upgrade pip -y
-pip3 install virtualenv -y
+pip3 install --upgrade pip
+pip3 install virtualenv
 
 ## Perl
 apt install perldoc cpan
@@ -144,7 +144,7 @@ apt-get install colordiff -y
 apt-get install sendmail -y
 
 add-apt-repository ppa:ubuntu-mozilla-security/ppa -y
-apt-get update -y
+apt-get update
 apt-get install thunderbird -y
 
 # protonmail
@@ -185,7 +185,7 @@ apt-get install openvpn bridge-utils -y
 apt-get install network-manager-openvpn -y
 
 ## Browsers
-add-apt-repository ppa:ubuntu-mozilla-daily/ppa
+add-apt-repository ppa:ubuntu-mozilla-daily/ppa -y
 apt-get install firefox -y
 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -193,7 +193,7 @@ sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 apt-get update
 apt-get install google-chrome-stable -y
 
-add-apt-repository ppa:webupd8team/tor-browser
+add-apt-repository ppa:webupd8team/tor-browser -y
 apt-get update -y
 apt-get install tor-browser -y
 
