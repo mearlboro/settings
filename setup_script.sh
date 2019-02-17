@@ -1,7 +1,14 @@
 #!/bin/sh
 
 ############################################################################
+# Welcome to the Linux Mint setup script!
+#   1. Drop to a sudo shell (sudo -s)
+#   2. Run setup script
+#   3. Sit back and relax
+############################################################################
+
 # kernel update utility
+sudo apt-get update
 sudo apt-add-repository -y ppa:teejee2008/ppa -y
 sudo apt-get update
 sudo apt-get install ukuu -y
@@ -134,6 +141,7 @@ apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudevie
 # organize
 apt install tree -y # tree view of files
 # tree -L 2
+apt install colordiff -y
 
 ############################################################################
 #### Email
@@ -230,7 +238,7 @@ apt-get install signal-desktop -y
 wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | sudo apt-key add -
 sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
 apt-get update -y
-apt-get install jitsi-meet -y
+apt-get install jitsi -y
 
 ############################################################################
 #### Virtualisation
