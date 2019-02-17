@@ -59,15 +59,11 @@ apt-get install git-crypt -y
 
 git config --global user.name "mearlboro"
 git config --global user.email "mearlboro@protonmail.com"
-
 git config --global color.ui true
-
 # don't show changes of permissions in diff
 git config --global core.filemode false
-
 # leave Windows line endings alone
 git config --global core.autocrlf input
-
 # always add your changes on top when pulling
 git config --global branch.autosetuprebase always
 
@@ -100,8 +96,7 @@ mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
 ## Latex
 apt-get install texlive -y
-apt-get install texlive-latex-base -y
-
+apt-get install texlive-latex-base texlive-latex-extra texlive-bibtex-extra biber -y
 
 ############################################################################
 #### Shell
@@ -139,9 +134,9 @@ apt-get install htop -y
 apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller -y
 
 # organize
-apt install tree -y # tree view of files
-# tree -L 2
-apt install colordiff -y
+apt-get install tree -y
+apt-get install colordiff -y
+
 
 ############################################################################
 #### Email
@@ -149,7 +144,7 @@ apt install colordiff -y
 apt-get install sendmail -y
 
 add-apt-repository ppa:ubuntu-mozilla-security/ppa -y
-apt-get update
+apt-get update -y
 apt-get install thunderbird -y
 
 # protonmail
@@ -171,13 +166,13 @@ rm protonmail-bridge_1.0.3-1_amd64.deb
 apt install libemail-outlook-message-perl libemail-sender-perl -y
 
 
-
 ################################################################################
 #### Web
 ################################################################################
 
 apt-get install whois -y
 apt-get install dnsutils -y
+apt-get install proxychain -y
 
 apt-get install filezilla -y
 
@@ -189,7 +184,6 @@ apt-get install nmap -y
 apt-get install openvpn bridge-utils -y
 apt-get install network-manager-openvpn -y
 
-
 ## Browsers
 add-apt-repository ppa:ubuntu-mozilla-daily/ppa
 apt-get install firefox -y
@@ -200,7 +194,7 @@ apt-get update
 apt-get install google-chrome-stable -y
 
 add-apt-repository ppa:webupd8team/tor-browser
-apt-get update
+apt-get update -y
 apt-get install tor-browser -y
 
 
@@ -239,6 +233,13 @@ wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | sudo apt-key add -
 sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
 apt-get update -y
 apt-get install jitsi -y
+
+# Discord
+apt-get install libc++1
+wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+dpkg -i discord.deb
+rm discord.deb
+
 
 ############################################################################
 #### Virtualisation
