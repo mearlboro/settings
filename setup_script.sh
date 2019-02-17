@@ -92,8 +92,7 @@ mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
 ## Latex
 apt-get install texlive -y
-apt-get install texlive-latex-base -y
-
+apt-get install texlive-latex-base texlive-latex-extra texlive-bibtex-extra biber -y
 
 ############################################################################
 #### Shell
