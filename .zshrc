@@ -1,3 +1,5 @@
+export TERM="xterm-256color"
+
 ###############################################################################
 ## Autocomplete
 ###############################################################################
@@ -43,7 +45,7 @@ setopt IGNORE_EOF
 
 # shell
 alias ls='ls -CF'  # Make ls display in columns and with a file type indicator by default
-alias ll='ls -lhA' # display hidden files in long format, omit current and parent
+alias ll='ls -lhA' # display hidden files in long format, omit current and parent, human readable sizes
 alias mkdir='mkdir -pv' # create parent dirs, visually
 
 # always ssh with agent forwarding
@@ -63,13 +65,14 @@ alias xrandrfix='xrandr --setprovideroutputsource'
 # always whois without legal disclaimer
 alias whois='whois -H'
 
+alias zshrc='vim ~/.zshrc'
+alias zshsrc='source ~/.zshrc'
+alias vimrc='vim ~/.vimrc'
+alias i3conf='vim ~/.config/i3/config'
+
 # type 'dir' instead of 'cd dir'
 setopt AUTO_CD
-# type ~name to access directory
-hash -d dl=/Downloads
 
-
-###############################################################################
 ## Shortcuts
 ###############################################################################
 
@@ -103,3 +106,10 @@ function mandelbrot {
         echo
     done
 }
+
+###############################################################################
+## Quick
+###############################################################################
+
+# type ~name to access directory
+hash -d dl=~/Downloads
