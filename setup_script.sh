@@ -126,7 +126,7 @@ apt-get install tmux -y
 #### Accessories
 ############################################################################
 
-apt-get install nautilus -y
+apt-get install nautilus nautilus-open-terminal -y
 
 apt-get install htop -y
 
@@ -181,7 +181,7 @@ apt-get install openssh-server -y
 apt-get install nmap -y
 
 ## VPN
-apt-get install openvpn bridge-utils -y
+apt-get install openvpn -y
 apt-get install network-manager-openvpn -y
 
 ## Browsers
@@ -204,6 +204,12 @@ apt-get install tor-browser -y
 ############################################################################
 
 apt-get install vlc -y
+
+apt-get install inkscape -y
+
+apt-get install gimp -y
+
+apt-get install fbreader -y
 
 # Telegram
 add-apt-repository ppa:atareao/telegram -y
