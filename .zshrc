@@ -69,6 +69,7 @@ alias zshrc='vim ~/.zshrc'
 alias zshsrc='source ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias i3conf='vim ~/.config/i3/config'
+alias pvpn='sudo protonvpn'
 
 # type 'dir' instead of 'cd dir'
 setopt AUTO_CD
