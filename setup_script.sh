@@ -128,14 +128,15 @@ apt-get install tmux -y
 
 apt-get install nautilus nautilus-open-terminal -y
 
-apt-get install htop -y
+apt-get install tlp dstat htop nmon slurm ncdu -y
+
+apt-get install moreutils -y
 
 # archive
 apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller -y
 
 # organize
-apt-get install tree -y
-apt-get install colordiff -y
+apt-get install ccze tree colordiff -y
 
 
 ############################################################################
@@ -170,15 +171,12 @@ apt install libemail-outlook-message-perl libemail-sender-perl -y
 #### Web
 ################################################################################
 
-apt-get install whois -y
-apt-get install dnsutils -y
-apt-get install proxychain -y
+apt-get install whois dnsutils proxychain -y
+apt-get install nmap -y
 
 apt-get install filezilla -y
 
 apt-get install openssh-server -y
-
-apt-get install nmap -y
 
 ## VPN
 apt-get install openvpn dialog -y
@@ -197,7 +195,6 @@ apt-get install google-chrome-stable -y
 add-apt-repository ppa:webupd8team/tor-browser -y
 apt-get update -y
 apt-get install tor-browser -y
-
 
 
 ############################################################################
