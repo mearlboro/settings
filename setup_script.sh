@@ -181,8 +181,9 @@ apt-get install openssh-server -y
 apt-get install nmap -y
 
 ## VPN
-apt-get install openvpn -y
+apt-get install openvpn dialog -y
 apt-get install network-manager-openvpn -y
+pip3 install protonvpn-cli
 
 ## Browsers
 add-apt-repository ppa:ubuntu-mozilla-daily/ppa -y
