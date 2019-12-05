@@ -65,6 +65,10 @@ alias xrandrfix='xrandr --setprovideroutputsource'
 # always whois without legal disclaimer
 alias whois='whois -H'
 
+# copy stdout to visual clipboard
+alias clip='xclip -selection clipboard'
+
+# configs
 alias zshrc='vim ~/.zshrc'
 alias zshsrc='source ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
