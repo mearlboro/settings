@@ -64,6 +64,9 @@ mkdir ~/.zsh/themes/
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
 echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
+# allow current user to chown files without sudo
+echo '$SUDO_USER ALL=(ALL) NOPASSWD:/bin/chown' >> /etc/sudoers
+
 
 #############################################################################
 #### Editors
