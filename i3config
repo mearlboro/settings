@@ -194,5 +194,10 @@ exec_always setxkbmap -layout gb
 
 bindsym F1 exec amixer -q set Master 5%+ unmute
 bindsym F2 exec amixer -q set Master 5%- unmute
+
 bindsym F4 exec amixer -q set Master mute
+
+bindsym F5 exec bash -c "echo 100 > /sys/class/backlight/intel_backlight/brightness"
+bindsym F6 exec bash -c "echo 7500 > /sys/class/backlight/intel_backlight/brightness"
+
 
