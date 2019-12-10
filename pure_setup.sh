@@ -7,6 +7,16 @@
 #   3. Sit back and relax
 ############################################################################
 
+
+# Fix keyboard bug
+setxkbmap -layout gb
+echo "# Purism Librem 13 V2/V3/V4
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svnPurism*:pn*Librem13v[2-4]*:pvr*
+ KEYBOARD_KEY_56=102nd" > /etc/udev/hwdb.d/70-keyboard.hwdb
+systemd-hwdb update
+udevadm trigger
+
+
 ############################################################################
 #### Dev
 ############################################################################
