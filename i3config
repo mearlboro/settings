@@ -163,12 +163,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-}
-
 # switch back to last workspace
 bindsym $mod+Tab workspace back_and_forth
 
@@ -176,14 +170,24 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym Ctrl+Shift+l exec i3lock
 bindsym Ctrl+Shift+q exec --no-startup-id "sh -c 'i3lock && systemctl suspend'"
 
+
+################################################################################
+# customisation
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+}
+
 # desktop background
-exec feh --bg-scale '~/Pictures/mandelbrot.jpg'
-exec nitrogen --restore
+exec_always --no-startup-id feh --bg-fill /home/m/Pictures/mandelbrot.jpg
 
-# keyboard & FN-keys binding
-exec 'setxkbmap gb'
+################################################################################
+# keyboard
+exec_always setxkbmap -layout gb
 
-bindsym F2 exec amixer -q set Master 5%+ unmute
-bindsym F3 exec amixer -q set Master 5%- unmute
+bindsym F1 exec amixer -q set Master 5%+ unmute
+bindsym F2 exec amixer -q set Master 5%- unmute
 bindsym F4 exec amixer -q set Master mute
 
