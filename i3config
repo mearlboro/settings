@@ -183,6 +183,11 @@ bar {
 # desktop background
 exec_always --no-startup-id feh --bg-fill /home/m/Pictures/mandelbrot.jpg
 
+
+# network manager applet
+exec_always --no-startup-id nm-applet
+
+
 ################################################################################
 # keyboard
 exec_always setxkbmap -layout gb
