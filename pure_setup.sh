@@ -16,6 +16,9 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnPurism*:pn*Librem13v[2-4]*:pvr*
 systemd-hwdb update
 udevadm trigger
 
+# Configure natural scrolling
+sed -i 's/touchpad catchall/touchpad catchall"\n        Option "NaturalScrolling" "true"/g' /usr/share/X11/xorg.conf.d/40-libinput.conf
+
 
 ############################################################################
 #### Dev
