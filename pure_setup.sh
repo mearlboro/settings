@@ -68,7 +68,7 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9
 echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
 # allow current user to chown files without sudo
-echo "$SUDO_USER ALL=(ALL) NOPASSWD:/bin/chown" >> /etc/sudoers
+echo "\n$SUDO_USER ALL=(root) NOPASSWD: /home/m/.config/i3/brightness.sh" >> /etc/sudoers
 
 
 #############################################################################
