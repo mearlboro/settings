@@ -112,7 +112,6 @@ wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
 # add a theme
 mkdir ~/.zsh/themes/
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
-echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
 
 ############################################################################

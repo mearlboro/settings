@@ -62,7 +62,6 @@ wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
 # add a theme
 mkdir ~/.zsh/themes/
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
-echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
 # allow current user to chown files without sudo
 echo "\n$SUDO_USER ALL=(root) NOPASSWD: /home/m/.config/i3/brightness.sh" >> /etc/sudoers
@@ -95,6 +94,8 @@ apt-get install texlive-latex-base texlive-latex-extra texlive-bibtex-extra bibe
 #### Utilities & Accessories
 ############################################################################
 
+apt install redshift -y
+
 # performance & monitoring
 apt-get install tlp dstat htop nmon slurm ncdu -y
 
@@ -115,6 +116,9 @@ apt-get install ccze tree colordiff -y
 ################################################################################
 #### Web
 ################################################################################
+
+apt install tor -y
+# sudo systemctl enable tor.service
 
 apt-get install whois dnsutils proxychain -y
 apt-get install nmap -y
