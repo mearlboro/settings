@@ -8,11 +8,20 @@
 ############################################################################
 
 # kernel update utility
-sudo apt-get update
-sudo apt-add-repository -y ppa:teejee2008/ppa -y
-sudo apt-get update
-sudo apt-get install ukuu -y
+apt-get update
+apt-add-repository -y ppa:teejee2008/ppa -y
+apt-get update
+apt-get install ukuu -y
 
+############################################################################
+#### Desktop Environment
+############################################################################
+
+apt-get install i3 i3lock i3status suckless-tools -y
+mkdir ~/.config/i3
+cd ~/.config/i3
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/config
+cd ~
 
 ############################################################################
 #### Dev
@@ -25,8 +34,7 @@ apt-get install build-essential -y
 # make -v
 
 ## Haskell
-apt-get install haskell-platform ghc -y
-apt-get install cabal-install -y
+apt-get install haskell-platform ghc haskell-stack cabal-install -y
 cabal update
 
 ## Ruby
@@ -57,7 +65,7 @@ apt-get install php -y
 apt-get install git -y
 apt-get install git-crypt -y
 
-git config --global user.name "mearlboro"
+git config --global user.name "M"
 git config --global user.email "mearlboro@protonmail.com"
 git config --global color.ui true
 # don't show changes of permissions in diff
@@ -112,7 +120,6 @@ wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
 # add a theme
 mkdir ~/.zsh/themes/
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
-echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
 
 ############################################################################
@@ -257,8 +264,3 @@ rm virtualbox.deb
 ## Extension pack - will open virtualbox - TODO: silent install
 wget https://download.virtualbox.org/virtualbox/5.2.4/Oracle_VM_VirtualBox_Extension_Pack-5.2.4-119785.vbox-extpack
 virtualbox Oracle_VM_VirtualBox_Extension_Pack-5.2.4-119785.vbox-extpack
-
-
-###
-sudo reboot
-

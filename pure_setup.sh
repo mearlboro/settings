@@ -16,6 +16,17 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnPurism*:pn*Librem13v[2-4]*:pvr*
 systemd-hwdb update
 udevadm trigger
 
+############################################################################
+#### Desktop Environment
+############################################################################
+
+apt-get install i3 i3lock i3status suckless-tools -y
+mkdir ~/.config/i3
+cd ~/.config/i3
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/config
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/brightness.sh
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/screenshot.sh
+cd ~
 
 ############################################################################
 #### Dev
@@ -62,9 +73,8 @@ wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
 # add a theme
 mkdir ~/.zsh/themes/
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
-echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
-# allow current user to chown files without sudo
+# allow current user to chown files without sudo for i3 system scripts
 echo "\n$SUDO_USER ALL=(root) NOPASSWD: /home/m/.config/i3/brightness.sh" >> /etc/sudoers
 
 
