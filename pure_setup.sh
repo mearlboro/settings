@@ -131,6 +131,16 @@ apt-get install filezilla thunderbird -y
 
 apt-get install openssh-server -y
 
+## Yubikey
+wget https://developers.yubico.com/yubikey-manager-qt/Releases/yubikey-manager-qt-latest-linux.AppImage
+wget https://developers.yubico.com/yubioath-desktop/Releases/yubioath-desktop-latest-linux.AppImage
+mkdir -p /home/share/yubico
+export PATH="/home/share/yubico:$PATH"
+cp yubikey-manager-qt-latest-linux.AppImage /home/share/appimage/yubimgr
+cp yubioath-desktop-latest-linux.AppImage   /home/share/appimage/yauth
+apt install -y gnupg2 gnupg-agent dirmngr cryptsetup scdaemon pcscd secure-delete hopenpgp-tools
+wget https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-personalization-gui-3.1.25.tar.gz
+
 ## VPN
 apt install network-manager openvpn network-manager-openvpn -y
 apt install dialog python3-pip python3-setuptools -y
@@ -139,6 +149,20 @@ pip3 install protonvpn-cli
 add-apt-repository ppa:wireguard/wireguard -y
 apt-get update -y
 sudo apt-get install openresolv curl linux-headers-$(uname -r) wireguard-dkms wireguard-tools
+
+# protonmail bridge
+# https://protonmail.com/bridge/install
+# https://protonmail.com/bridge/thunderbird
+# needs files bridge_pubkey.gpg and bridge.pol
+wget https://protonmail.com/download/protonmail-bridge_1.2.3-1_amd64.deb
+apt-get install debsig-verify debian-keyring -y
+mkdir -p /usr/share/debsig/keyrings/E2C75D68E6234B07
+gpg --dearmor --output /usr/share/debsig/keyrings/E2C75D68E6234B07/debsig.gpg bridge_pubkey.gpg
+rm bridge_pubkey.gpg
+mkdir -p /etc/debsig/policies/E2C75D68E6234B07
+mv bridge_16.04.pol /etc/debsig/policies/E2C75D68E6234B07
+debsig-verify protonmail-bridge_1.2.3-1_amd64.deb
+apt-get install ./protonmail-bridge_1.2.3-1_amd64.deb
 
 
 ############################################################################
