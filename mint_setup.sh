@@ -7,12 +7,13 @@
 #   3. Sit back and relax
 ############################################################################
 
-# kernel update utility
-sudo apt-get update
-sudo apt-add-repository -y ppa:teejee2008/ppa -y
-sudo apt-get update
-sudo apt-get install ukuu -y
+# apt https
+apt-get install apt-transport-https -y
 
+# kernel update utility
+apt-add-repository -y ppa:teejee2008/ppa -y
+apt-get update
+apt-get install ukuu -y
 
 ############################################################################
 #### Dev
@@ -201,11 +202,9 @@ apt-get install tor-browser -y
 ############################################################################
 
 apt-get install vlc -y
-
 apt-get install inkscape -y
-
 apt-get install gimp -y
-
+apt-get install darktable -y
 apt-get install fbreader -y
 
 # Telegram
@@ -242,6 +241,12 @@ apt-get install libc++1
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 dpkg -i discord.deb
 rm discord.deb
+
+# Wire
+wget -q https://wire-app.wire.com/linux/releases.key -O- | sudo apt-key add -
+echo "deb [arch=amd64] https://wire-app.wire.com/linux/debian stable main" | sudo tee /etc/apt/sources.list.d/wire-desktop.list
+apt-get update
+apt-get install wire-desktop -y
 
 
 ############################################################################
