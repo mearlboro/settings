@@ -7,6 +7,8 @@
 #   3. Sit back and relax
 ############################################################################
 
+apt-get install apt-transport-https -y
+apt-get install libcurl3 -y
 
 # Fix keyboard bug
 setxkbmap -layout gb
@@ -21,20 +23,44 @@ udevadm trigger
 ############################################################################
 
 apt-get install i3 i3lock i3status suckless-tools -y
+apt-get install feh alsa-base alsa-utils scrot -y
+
+# copy configs
 mkdir ~/.config/i3
-cd ~/.config/i3
-wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/config
-wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/brightness.sh
-wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/screenshot.sh
-cd ~
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/config -P ~/.config/i3
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/brightness.sh -P ~/.config/i3
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/screenshot.sh -P ~/.config/i3
+chmod +x brightness.sh
+chmod +x screenshot.sh
+echo "\n$SUDO_USER ALL=(root) NOPASSWD: /home/m/.config/i3/brightness.sh" >> /etc/sudoers
+
+
+############################################################################
+#### Shell & terminal
+############################################################################
+
+apt-get install tmux -y
+
+# install shell, make default, load
+apt install zsh -y
+chsh -s /bin/zsh $SUDO_USER
+
+# download configs
+wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
+mkdir ~/.zsh/themes/
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
+source ~/.zshrc
+
+
 
 ############################################################################
 #### Dev
 ############################################################################
 
-apt-get install build-essential -y
+apt-get install build-essential libc++1 -y
 
-apt-get install haskell-platform ghc haskell-stack -y
+apt-get install haskell-platform ghc haskell-stack cabal-install -y
+cabal update
 
 apt-get install ruby-dev -y
 mkdir -p /home/share/gems
@@ -45,6 +71,7 @@ apt-get install python3-pip python3-setuptools python3-pyqt5 python3-dev libssl-
 ln -s /usr/bin/python3 /usr/local/bin/python
 ln -s /usr/bin/easy_install3 /usr/local/bin/easy_install
 pip3 install --upgrade pip
+pip3 install virtualenv
 
 ## Git
 apt-get install git -y
@@ -61,32 +88,12 @@ git config --global core.autocrlf input
 git config --global branch.autosetuprebase always
 
 
-############################################################################
-#### Shell & terminal
-############################################################################
-
-apt-get install tmux -y
-
-apt install zsh -y
-chsh -s /bin/zsh $SUDO_USER
-
-# download my .zshrc
-wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
-
-# add a theme
-mkdir ~/.zsh/themes/
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
-echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
-
-# allow current user to chown files without sudo
-echo "\n$SUDO_USER ALL=(root) NOPASSWD: /home/m/.config/i3/brightness.sh" >> /etc/sudoers
-
-
 #############################################################################
 #### Editors
 ############################################################################
 
-## install plugin manager, download my .vimrc, configure
+## install vim, plugin manager, download my .vimrc, configure
+apt-get install vim -y
 gem install vim-update-bundles
 wget https://raw.githubusercontent.com/mearlboro/settings/master/.vimrc -P ~/
 vim-update-bundles
@@ -115,10 +122,10 @@ apt install redshift -y
 apt-get install tlp dstat htop nmon slurm ncdu -y
 
 # file manager
-apt-get install file nemo -y
+apt-get install file -y
 
 # various linux utilities
-apt-get install feh moreutils -y
+apt-get install moreutils -y
 apt-get insrall xclip -y
 
 # archive
@@ -132,13 +139,15 @@ apt-get install ccze tree colordiff exa -y
 #### Web
 ################################################################################
 
-apt install tor -y
-# sudo systemctl enable tor.service
-
 apt-get install whois dnsutils proxychain -y
 apt-get install nmap -y
 
-apt-get install filezilla thunderbird -y
+apt-get install filezilla -y
+
+apt-get install thunderbird -y
+
+# Browsers
+apt install tor -y
 
 
 ################################################################################
@@ -185,13 +194,12 @@ apt-get install ./protonmail-bridge_1.2.3-1_amd64.deb
 #### Media
 ############################################################################
 
-apt-get install vlc -y
-
 # file systems
 apt-get install exfat-fuse exfat-utils -y
 
 # graphics
+apt-get install vlc -y
 apt-get install inkscape -y
 apt-get install gimp -y
-apt-get install fbreader -y
 apt-get install darktable -y
+apt-get install fbreader -y
