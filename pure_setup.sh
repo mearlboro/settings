@@ -16,7 +16,6 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnPurism*:pn*Librem13v[2-4]*:pvr*
 systemd-hwdb update
 udevadm trigger
 
-
 ############################################################################
 #### Dev
 ############################################################################
@@ -26,6 +25,9 @@ apt-get install build-essential -y
 apt-get install haskell-platform ghc haskell-stack -y
 
 apt-get install ruby-dev -y
+mkdir -p /home/share/gems
+export GEM_HOME="/home/share/gems"
+export PATH="/home/share/gems/bin:$PATH"
 
 apt-get install python3-pip python3-setuptools python3-pyqt5 python3-dev libssl-dev -y
 ln -s /usr/bin/python3 /usr/local/bin/python
@@ -53,18 +55,15 @@ git config --global branch.autosetuprebase always
 
 apt-get install tmux -y
 
-apt install zsh -y
-chsh -s /bin/zsh $SUDO_USER
-
-# download my .zshrc
+# download configs
 wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
-
-# add a theme
 mkdir ~/.zsh/themes/
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
 
-# allow current user to chown files without sudo
-echo "\n$SUDO_USER ALL=(root) NOPASSWD: /home/m/.config/i3/brightness.sh" >> /etc/sudoers
+# install shell, make default, load
+apt install zsh -y
+chsh -s /bin/zsh $SUDO_USER
+source ~/zshrc
 
 
 #############################################################################
@@ -100,7 +99,7 @@ apt install redshift -y
 apt-get install tlp dstat htop nmon slurm ncdu -y
 
 # file manager
-apt-get install nautilus -y
+apt-get install file nemo -y
 
 # various linux utilities
 apt-get install feh moreutils -y
@@ -110,7 +109,7 @@ apt-get insrall xclip -y
 apt-get install unace zip unzip p7zip-full sharutils uudeview mpack arj cabextract file-roller -y
 
 # organize & colour
-apt-get install ccze tree colordiff -y
+apt-get install ccze tree colordiff exa -y
 
 
 ################################################################################
@@ -123,7 +122,12 @@ apt install tor -y
 apt-get install whois dnsutils proxychain -y
 apt-get install nmap -y
 
-apt-get install filezilla -y
+apt-get install filezilla thunderbird -y
+
+
+################################################################################
+#### Security
+################################################################################
 
 apt-get install openssh-server -y
 
@@ -132,14 +136,20 @@ apt install network-manager openvpn network-manager-openvpn -y
 apt install dialog python3-pip python3-setuptools -y
 pip3 install protonvpn-cli
 
+add-apt-repository ppa:wireguard/wireguard -y
+apt-get update -y
+sudo apt-get install openresolv curl linux-headers-$(uname -r) wireguard-dkms wireguard-tools
+
 
 ############################################################################
 #### Media
 ############################################################################
 
+# file systems
+apt-get install exfat-fuse exfat-utils -y
+
+# graphics
 apt-get install inkscape -y
-
 apt-get install gimp -y
-
 apt-get install fbreader -y
-
+apt-get install darktable -y
