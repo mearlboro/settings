@@ -16,6 +16,16 @@ apt-get update
 apt-get install ukuu -y
 
 ############################################################################
+#### Desktop Environment
+############################################################################
+
+apt-get install i3 i3lock i3status suckless-tools -y
+mkdir ~/.config/i3
+cd ~/.config/i3
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/config
+cd ~
+
+############################################################################
 #### Dev
 ############################################################################
 
@@ -26,8 +36,7 @@ apt-get install build-essential -y
 # make -v
 
 ## Haskell
-apt-get install haskell-platform ghc -y
-apt-get install cabal-install -y
+apt-get install haskell-platform ghc haskell-stack cabal-install -y
 cabal update
 
 ## Ruby
@@ -113,6 +122,7 @@ wget https://raw.githubusercontent.com/mearlboro/settings/master/.zshrc -P ~/
 # add a theme
 mkdir ~/.zsh/themes/
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.zsh/themes/powerlevel9k
+echo 'source  ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
 
 
 ############################################################################
@@ -125,8 +135,6 @@ apt-get install tmux -y
 ############################################################################
 #### Accessories
 ############################################################################
-
-apt-get install nautilus nautilus-open-terminal -y
 
 apt-get install tlp dstat htop nmon slurm ncdu -y
 
