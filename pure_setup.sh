@@ -116,7 +116,7 @@ apt-get install texlive-latex-base texlive-latex-extra texlive-bibtex-extra bibe
 #### Utilities & Accessories
 ############################################################################
 
-apt install redshift -y
+apt-get install redshift -y
 
 # performance & monitoring
 apt-get install tlp dstat htop nmon slurm ncdu -y
@@ -127,6 +127,7 @@ apt-get install file -y
 # various linux utilities
 apt-get install moreutils -y
 apt-get insrall xclip -y
+apt-get install pv -y
 
 # archive
 apt-get install unace zip unzip p7zip-full sharutils uudeview mpack arj cabextract file-roller -y
@@ -161,8 +162,8 @@ wget https://developers.yubico.com/yubikey-manager-qt/Releases/yubikey-manager-q
 wget https://developers.yubico.com/yubioath-desktop/Releases/yubioath-desktop-latest-linux.AppImage
 mkdir -p /home/share/yubico
 export PATH="/home/share/yubico:$PATH"
-cp yubikey-manager-qt-latest-linux.AppImage /home/share/appimage/yubimgr
-cp yubioath-desktop-latest-linux.AppImage   /home/share/appimage/yauth
+cp yubikey-manager-qt-latest-linux.AppImage /home/share/yubico/yubimgr
+cp yubioath-desktop-latest-linux.AppImage   /home/share/yubico/yauth
 apt install -y gnupg2 gnupg-agent dirmngr cryptsetup scdaemon pcscd secure-delete hopenpgp-tools
 wget https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-personalization-gui-3.1.25.tar.gz
 
