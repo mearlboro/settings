@@ -24,7 +24,7 @@ apt-get install feh alsa-base alsa-utils scrot -y
 
 # copy configs
 mkdir ~/.config/i3
-wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/config -P ~/.  config/i3
+wget https://raw.githubusercontent.com/mearlboro/settings/master/i3/config -P ~/.config/i3
 
 
 ############################################################################
@@ -60,7 +60,7 @@ cabal update
 
 ## Ruby
 # Linux mint already ships with ruby, only install the dev packages
-#gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3                           7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+#gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E37D2BAF1CF37B13E2069D6956105BD0E739499BDB
 #curl -sSL https://get.rvm.io | bash -s stable
 #rvm install ruby
 #rvm --default use ruby
@@ -134,7 +134,7 @@ apt-get install texlive-latex-base texlive-latex-extra texlive-bibtex-extra bibe
 #### Utilities & accessories
 ############################################################################
 
-apt install redshift -y
+apt-get install redshift -y
 
 # performance & monitoring
 apt-get install tlp dstat htop nmon slurm ncdu -y
@@ -145,6 +145,7 @@ apt-get install file nemo -y
 # various linux utilities
 apt-get install moreutils -y
 apt-get install xclip -y
+apt-get install pv -y
 
 # archive
 apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller -y
@@ -189,10 +190,8 @@ apt-get install whois dnsutils proxychain -y
 apt-get install nmap -y
 
 apt-get install filezilla -y
-
 apt-get install thunderbird -y
 
-apt-get install openssh-server -y
 
 ## VPN
 apt-get install openvpn dialog -y
@@ -202,11 +201,6 @@ pip3 install protonvpn-cli
 ## Browsers
 add-apt-repository ppa:ubuntu-mozilla-daily/ppa -y
 apt-get install firefox -y
-
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-apt-get update
-apt-get install google-chrome-stable -y
 
 apt install tor -y
 # sudo systemctl enable tor.service
@@ -222,23 +216,23 @@ apt-get install tor-browser -y
 apt-get install openssh-server -y
 
 ## Yubikey
-wget https://developers.yubico.com/yubikey-manager-qt/Releases/yubikey-manager-qt- latest-linux.AppImage
-wget https://developers.yubico.com/yubioath-desktop/Releases/yubioath-desktop-     latest-linux.AppImage
+wget https://developers.yubico.com/yubikey-manager-qt/Releases/yubikey-manager-qt-latest-linux.AppImage
+wget https://developers.yubico.com/yubioath-desktop/Releases/yubioath-desktop-latest-linux.AppImage
 mkdir -p /home/share/yubico
 export PATH="/home/share/yubico:$PATH"
-cp yubikey-manager-qt-latest-linux.AppImage /home/share/appimage/yubimgr
-cp yubioath-desktop-latest-linux.AppImage   /home/share/appimage/yauth
-apt install -y gnupg2 gnupg-agent dirmngr cryptsetup scdaemon pcscd secure-delete  hopenpgp-tools
-wget https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-   personalization-gui-3.1.25.tar.gz
+cp yubikey-manager-qt-latest-linux.AppImage /home/share/yubico/yubimgr
+cp yubioath-desktop-latest-linux.AppImage /home/share/yubico/yauth
+apt install -y gnupg2 gnupg-agent dirmngr cryptsetup scdaemon pcscd secure-delete hopenpgp-tools
+wget https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-personalization-gui-3.1.25.tar.gz
 
 ## VPN
 apt install network-manager openvpn network-manager-openvpn -y
-apt install dialog python3-pip python3-setuptools -y
+apt install dialog -y
 pip3 install protonvpn-cli
 
 add-apt-repository ppa:wireguard/wireguard -y
 apt-get update -y
-sudo apt-get install openresolv curl linux-headers-$(uname -r) wireguard-dkms      wireguard-tools
+sudo apt-get install openresolv curl linux-headers-$(uname -r) wireguard-dkms wireguard-tools
 
 # protonmail bridge
 # https://protonmail.com/bridge/install
@@ -247,7 +241,7 @@ sudo apt-get install openresolv curl linux-headers-$(uname -r) wireguard-dkms   
 wget https://protonmail.com/download/protonmail-bridge_1.2.3-1_amd64.deb
 apt-get install debsig-verify debian-keyring -y
 mkdir -p /usr/share/debsig/keyrings/E2C75D68E6234B07
-gpg --dearmor --output /usr/share/debsig/keyrings/E2C75D68E6234B07/debsig.gpg      bridge_pubkey.gpg
+gpg --dearmor --output /usr/share/debsig/keyrings/E2C75D68E6234B07/debsig.gpg bridge_pubkey.gpg
 rm bridge_pubkey.gpg
 mkdir -p /etc/debsig/policies/E2C75D68E6234B07
 mv bridge_16.04.pol /etc/debsig/policies/E2C75D68E6234B07
