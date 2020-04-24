@@ -10,11 +10,6 @@
 apt-get install apt-transport-https -y
 apt-get install libcurl3 -y
 
-# kernel update utility
-apt-add-repository -y ppa:teejee2008/ppa -y
-apt-get update
-apt-get install ukuu -y
-
 ############################################################################
 #### Desktop Environment
 ############################################################################
