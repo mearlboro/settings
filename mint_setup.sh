@@ -197,11 +197,11 @@ pip3 install protonvpn-cli
 add-apt-repository ppa:ubuntu-mozilla-daily/ppa -y
 apt-get install firefox -y
 
-apt install tor -y
+apt install tor torbrowser-launcher tor-geoipdb torsocks -y
 # sudo systemctl enable tor.service
-add-apt-repository ppa:webupd8team/tor-browser -y
-apt-get update -y
-apt-get install tor-browser -y
+# add-apt-repository ppa:webupd8team/tor-browser -y
+# apt-get update -y
+# apt-get install tor-browser -y
 
 
 ################################################################################
@@ -226,7 +226,7 @@ apt install dialog -y
 pip3 install protonvpn-cli
 
 add-apt-repository ppa:wireguard/wireguard -y
-apt-get update -y
+apt-get update
 sudo apt-get install openresolv curl linux-headers-$(uname -r) wireguard-dkms wireguard-tools
 
 # protonmail bridge
@@ -260,7 +260,7 @@ apt-get install fbreader -y
 
 # social
 add-apt-repository ppa:atareao/telegram -y
-apt-get update -y
+apt-get update
 apt-get install telegram -y
 
 wget -O slack.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.2-amd64.deb
@@ -269,24 +269,23 @@ rm slack.deb
 
 wget -O skype.deb http://go.skype.com/skypeforlinux-64.deb
 dpkg -i skype.deb
-apt-get -f install -y
+apt-get -f install
 rm skype.deb
 
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
-apt-get update -y
+apt-get update
 apt-get install signal-desktop -y
 
 wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | sudo apt-key add -
 sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
-apt-get update -y
+apt-get update
 apt-get install jitsi -y
 
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 dpkg -i discord.deb
 rm discord.deb
 
-# Wire
 wget -q https://wire-app.wire.com/linux/releases.key -O- | sudo apt-key add -
 echo "deb [arch=amd64] https://wire-app.wire.com/linux/debian stable main" | sudo tee /etc/apt/sources.list.d/wire-desktop.list
 apt-get update
