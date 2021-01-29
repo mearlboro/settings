@@ -1,24 +1,8 @@
-export TERM="xterm-256color"
-
-###############################################################################
-## Autocomplete
-###############################################################################
-
-autoload -Uz compinit
-compinit
-# generate descriptions for auto completion
-zstyle ':completion:*' auto-description 'specify: %d'
-# allows navigation through options with arrow keys
-zstyle ':completion:*' menu yes select
-zstyle ':completion:*:*:cd:*' menu yes select
-
-unsetopt LIST_AMBIGUOUS
-setopt  COMPLETE_IN_WORD
-
-
 ###############################################################################
 ## Options
 ###############################################################################
+
+export TERM="xterm-256color"
 
 # pipe to multiple outputs
 setopt MULTIOS
@@ -38,14 +22,17 @@ setopt VI
 export EDITOR="vim"
 setopt IGNORE_EOF
 
+# type 'dir' instead of 'cd dir'
+setopt AUTO_CD
+
 
 ###############################################################################
 ## Aliases
 ###############################################################################
 
 # shell
-alias ls='ls -CF'  # Make ls display in columns and with a file type indicator by default
-alias ll='ls -lhA' # display hidden files in long format, omit current and parent, human readable sizes
+alias ls='exa -al' # ls replaced with exa, which is faster and in colour
+
 alias mkdir='mkdir -pv' # create parent dirs, visually
 
 # always ssh with agent forwarding
@@ -58,9 +45,7 @@ alias ps='ps auxf' # process list in detail
 alias hgrep='history | grep'
 # searches by process name, excluding this command
 alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
-
-# configure monitors
-alias xrandrfix='xrandr --setprovideroutputsource'
+alias grep='grep --color'
 
 # always whois without legal disclaimer
 alias whois='whois -H'
@@ -68,16 +53,27 @@ alias whois='whois -H'
 # copy stdout to visual clipboard
 alias clip='xclip -selection clipboard'
 
-# configs
+# screen brightness
+alias linc='~/.config/i3/brightness.sh --inc'
+alias ldec='~/.config/i3/brightness.sh --dec'
+lit () { sudo bash -c "echo $1 > /sys/class/backlight/intel_backlight/brightness" }
+
+# git aliases
+git config --global alias.adog 'log --all --decorate --oneline --graph'
+git config --global alias.last 'log -1 HEAD'
+git config --global alias.undo 'reset --soft HEAD~'
+
+# other
 alias zshrc='vim ~/.zshrc'
 alias zshsrc='source ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias i3conf='vim ~/.config/i3/config'
+
 alias pvpn='sudo protonvpn'
+alias pvpnr='pvpn d && pvpn c -f'
 
-# type 'dir' instead of 'cd dir'
-setopt AUTO_CD
 
+###############################################################################
 ## Shortcuts
 ###############################################################################
 
@@ -86,11 +82,6 @@ insert_sudo () { zle beginning-of-line; zle -U "sudo " }
 zle -N insert-sudo insert_sudo
 bindkey "^[s" insert-sudo
 
-
-###############################################################################
-## Theme
-###############################################################################
-source ~/.zsh/themes/powerlevel9k/powerlevel9k.zsh-theme
 
 ###############################################################################
 ## Other
@@ -112,9 +103,25 @@ function mandelbrot {
     done
 }
 
+
 ###############################################################################
 ## Quick
 ###############################################################################
 
 # type ~name to access directory
-hash -d dl=~/Downloads
+hash -d dl=/home/$(whoami)/Downloads
+hash -d c=/home/$(whoami)/code
+
+
+###############################################################################
+## Path
+###############################################################################
+export GEM_HOME="/home/share/gems"
+export PATH="/home/share/gems/bin:$PATH"
+export PATH="/home/share/yubico:$PATH"
+export PATH="/home/share/appimg:$PATH"
+
+
+## fzf
+source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
