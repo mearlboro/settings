@@ -93,7 +93,7 @@ apt-get install ccze tree colordiff -y
 apt-get install tlp dstat htop nmon slurm ncdu -y
 
 # file manager
-apt-get install file nautilus nautilus-open-terminal -y
+apt-get install file nemo -y
 
 # various linux utilities
 apt-get install moreutils xclip pv -y

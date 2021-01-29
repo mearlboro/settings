@@ -27,7 +27,7 @@ setopt AUTO_CD
 
 
 ###############################################################################
-## Aliases
+## Aliases & hashes
 ###############################################################################
 
 # shell
@@ -63,6 +63,10 @@ git config --global alias.adog 'log --all --decorate --oneline --graph'
 git config --global alias.last 'log -1 HEAD'
 git config --global alias.undo 'reset --soft HEAD~'
 
+# yubikey
+alias copy_ykey="ssh-add -L | clip"
+alias unlock_ykey="ssh-add -e /usr/lib/x86_64-linux-gnu/libykcs11.so; ssh-add -s /usr/lib/x86_64-linux-gnu/libykcs11.so"
+
 # other
 alias zshrc='vim ~/.zshrc'
 alias zshsrc='source ~/.zshrc'
@@ -71,6 +75,10 @@ alias i3conf='vim ~/.config/i3/config'
 
 alias pvpn='sudo protonvpn'
 alias pvpnr='pvpn d && pvpn c -f'
+
+# type ~name to access directory
+hash -d dl=/home/$(whoami)/Downloads
+hash -d c=/home/$(whoami)/code
 
 
 ###############################################################################
@@ -105,12 +113,32 @@ function mandelbrot {
 
 
 ###############################################################################
-## Quick
+## SSH
+# http://mah.everybody.org/docs/ssh
 ###############################################################################
 
-# type ~name to access directory
-hash -d dl=/home/$(whoami)/Downloads
-hash -d c=/home/$(whoami)/code
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+     echo "Initialising new SSH agent..."
+     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+     echo succeeded
+     chmod 600 "${SSH_ENV}"
+     . "${SSH_ENV}" > /dev/null
+     /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+     . "${SSH_ENV}" > /dev/null
+     ps -e | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+         start_agent;
+     }
+else
+     start_agent;
+fi
+
 
 
 ###############################################################################
@@ -118,9 +146,7 @@ hash -d c=/home/$(whoami)/code
 ###############################################################################
 export GEM_HOME="/home/share/gems"
 export PATH="/home/share/gems/bin:$PATH"
-export PATH="/home/share/yubico:$PATH"
 export PATH="/home/share/appimg:$PATH"
-
 
 ## fzf
 source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
