@@ -64,7 +64,7 @@ git config --global alias.last 'log -1 HEAD'
 git config --global alias.undo 'reset --soft HEAD~'
 
 # yubikey
-alias copy_ykey="ssh-add -L | clip"
+alias copy_key="ssh-add -L | clip"
 alias unlock_ykey="ssh-add -e /usr/lib/x86_64-linux-gnu/libykcs11.so; ssh-add -s /usr/lib/x86_64-linux-gnu/libykcs11.so"
 
 # other
@@ -144,8 +144,6 @@ fi
 ###############################################################################
 ## Path
 ###############################################################################
-export GEM_HOME="/home/share/gems"
-export PATH="/home/share/gems/bin:$PATH"
 export PATH="/home/share/appimg:$PATH"
 
 ## fzf
