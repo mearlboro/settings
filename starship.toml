@@ -1,0 +1,44 @@
+enable = true
+add_newline = false
+
+format = """
+[┌──────────>](bold fg:61)$username$hostname$directory \
+$git_branch$git_commit$git_state$git_status\
+$nix_shell$docker$haskell$perl$python$ruby$rust
+[└─>](bold fg:61) """
+
+[username]
+style_user = "bold fg:230"
+style_root = "bold fg:160"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[@$hostname](bold fg:166)[:](bold fg:33)"
+
+[directory]
+truncation_length=3
+format = "[$path](bold fg:64)"
+
+[aws]
+symbol = " "
+[docker]
+symbol = " "
+[git_branch]
+symbol = " "
+[haskell]
+symbol = " "
+[nix_shell]
+symbol = " "
+[package]
+symbol = " "
+[perl]
+symbol = " "
+[python]
+symbol = " "
+[ruby]
+symbol = " "
+[rust]
+symbol = " "
