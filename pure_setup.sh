@@ -127,38 +127,18 @@ apt-get update
 apt-get install tor deb.torproject.org-keyring
 
 ## Yubikey
-wget https://developers.yubico.com/yubikey-manager-qt/Releases/yubikey-manager-qt-latest-linux.AppImage
-wget https://developers.yubico.com/yubioath-desktop/Releases/yubioath-desktop-latest-linux.AppImage
-mkdir -p /home/share/yubico
-export PATH="/home/share/yubico:$PATH"
-mv yubikey-manager-qt-latest-linux.AppImage /home/share/yubico/yubimgr
-mv yubioath-desktop-latest-linux.AppImage   /home/share/yubico/yauth
-wget https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-personalization-gui-3.1.25.tar.gz -P ~/Downloads
-apt-get install yubico-piv-tool ykcs -y
+apt-get install yubikey-manager yubioath-desktop yubico-piv-tool ykcs -y
 
 ## VPN
+# modprobe wireguard && lsmod | grep -i wireguard
+apt-get install jq openresolv wireguard wireguard-tools -y
+
+# proton
+apt-get install protonmail-bridge
 apt-get install network-manager openvpn network-manager-openvpn -y
 apt-get install dialog -y
+
 pip3 install protonvpn-cli
-
-add-apt-repository ppa:wireguard/wireguard -y
-apt-get update -y
-apt-get install linux-headers-$(uname -r) wireguard-dkms wireguard-tools -y
-
-# protonmail bridge
-# https://protonmail.com/bridge/install
-# https://protonmail.com/bridge/thunderbird
-wget https://protonmail.com/download/protonmail-bridge_1.5.7-1_amd64.deb -P ~/Downloads
-wget https://protonmail.com/download/bridge_pubkey.gpg
-wget https://protonmail.com/download/bridge.pol
-mkdir -p /usr/share/debsig/keyrings/E2C75D68E6234B07
-gpg --dearmor --output /usr/share/debsig/keyrings/E2C75D68E6234B07/debsig.gpg bridge_pubkey.gpg
-rm bridge_pubkey.gpg
-mkdir -p /etc/debsig/policies/E2C75D68E6234B07
-mv bridge.pol /etc/debsig/policies/E2C75D68E6234B07
-debsig-verify ~/Downloads/protonmail-bridge_1.5.7-1_amd64.deb
-apt-get install ~/Downloads/protonmail-bridge_1.5.7-1_amd64.deb
-
 
 ############################################################################
 #### Media
