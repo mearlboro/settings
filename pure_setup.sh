@@ -130,8 +130,32 @@ apt-get install tor deb.torproject.org-keyring
 apt-get install yubikey-manager yubioath-desktop yubico-piv-tool ykcs -y
 
 ## VPN
+# https://mullvad.net/en/help/wireguard-and-mullvad-vpn/
 # modprobe wireguard && lsmod | grep -i wireguard
 apt-get install jq openresolv wireguard wireguard-tools -y
+## requires mullvad account to be pasted
+curl -LO https://mullvad.net/media/files/mullvad-wg.sh
+chmod +x ./mullvad-wg.sh
+./mullvad-wg.sh
+systemctl enable wg-quick@mullvad-gb11
+
+# mullvad
+wget https://mullvad.net/media/mullvad-code-signing.asc
+gpg2 --import mullvad-code-signing.asc
+gpg2 --edit-key A1198702FC3E0A09A9AE5B75D5A1D4F266DE8DDF trust
+# set trust level to 5
+wget --trust-server-names https://mullvad.net/download/app/deb/latest
+wget --trust-server-names https://mullvad.net/download/app/deb/latest/signature
+gpg2 --verify MullvadVPN-*.asc
+wget -O https://mullvad.net/download/app/deb/latest MullvadVPN.deb
+dpkg -i MullvadVPN.deb
+
+## https://mullvad.net/en/help/cli-command-wg/
+## requires mullvad account in file
+mullvad account set "$(cat mullvad-account.txt)"
+mullvad always-require-vpn set on
+mullvad auto-connect set on
+mullvad lan set allow
 
 # proton
 apt-get install protonmail-bridge
