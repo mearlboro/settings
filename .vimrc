@@ -72,8 +72,14 @@ set t_vb=
 set tm=500
 
 " Mark trailing whitespace
-match TODO /\s\+$/
+syntax match cTodo /\v\s\+$/
 
+" Mark 72-char, 80-char, 100-char, 120-char limits
+let &colorcolumn="72,80,100,120"
+
+"Make j and k not jump when wraping
+nnoremap j gj
+nnoremap k gk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search

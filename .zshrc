@@ -1,4 +1,38 @@
 ###############################################################################
+## Autocomplete
+###############################################################################
+
+autoload -Uz compinit
+compinit
+
+# generate descriptions for auto completion
+zstyle ':completion:*' auto-description 'specify: %d'
+# allows navigation through options with arrow keys
+zstyle ':completion:*' menu yes select
+zstyle ':completion:*:*:cd:*' menu yes select
+
+unsetopt LIST_AMBIGUOUS
+setopt   COMPLETE_IN_WORD
+
+
+###############################################################################
+## History
+###############################################################################
+
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+HISTFILE="$HOME/.zsh_history"
+
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt EXTENDED_HISTORY
+
+bindkey '^r' fzf-history-widget  # [Ctrl-r] - Search backward incrementally
+
+
+###############################################################################
 ## Options
 ###############################################################################
 
@@ -24,6 +58,10 @@ setopt IGNORE_EOF
 
 # type 'dir' instead of 'cd dir'
 setopt AUTO_CD
+
+# ctrl-w, alt-b (etc.) stop at chars like `/:` instead of just space
+autoload -U select-word-style
+select-word-style bash
 
 
 ###############################################################################
